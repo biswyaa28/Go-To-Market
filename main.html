@@ -334,6 +334,7 @@
             <div>&nbsp;<b>Kanishk Singh</b></div>
             <div>&nbsp;<b>Ganesh Padhi</b></div>
             <div>&nbsp;<b>Om Maurya</b></div>
+            <div>&nbsp;<b>Sneha Chaturvedi</b></div>
           </div>
         </div>
         <div class="begin-hint"><span class="arrow">→</span> Press arrow keys, scroll, or click to begin</div>
@@ -645,6 +646,7 @@
           <div>&nbsp;<b>Kanishk Singh</b></div>
           <div>&nbsp;<b>Ganesh Padhi</b></div>
           <div>&nbsp;<b>Om Maurya</b></div>
+          <div>&nbsp;<b>Sneha Chaturvedi</b></div>
         </div>
       </div>
     </section>
@@ -796,7 +798,32 @@
   /* ================= THREE.JS HERO (title slide) ================= */
   const canvas = document.getElementById('hero-canvas');
   let renderer, scene, camera, group, raf;
-  let mouseX=0, mouseY=0;
+  let mouseX=0, mouseY=0, mousePx={x:0,y:0};
+  let raycaster, pointer, hovered=null;
+
+  // info tooltip overlay for hovered cards
+  const tip = document.createElement('div');
+  tip.id = 'card-tip';
+  tip.style.cssText = 'position:fixed; z-index:50; pointer-events:none; opacity:0; transform:translateY(6px);'
+    + 'transition:opacity .25s ease, transform .25s ease; background:#171716; color:#FAFAF8;'
+    + 'border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:12px 14px; min-width:180px;'
+    + 'font-family:var(--body-f); font-size:12.5px; line-height:1.5; box-shadow:0 12px 32px rgba(0,0,0,.45);';
+  tip.innerHTML = '<div id="tip-code" style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; color:#9C9B96; text-transform:uppercase;"></div>'
+    + '<div id="tip-name" style="font-family:var(--display); font-weight:600; font-size:15px; margin:3px 0 5px;"></div>'
+    + '<div id="tip-desc" style="color:#C9C8C3;"></div>';
+  document.body.appendChild(tip);
+  const tipCode = tip.querySelector('#tip-code');
+  const tipName = tip.querySelector('#tip-name');
+  const tipDesc = tip.querySelector('#tip-desc');
+
+  // 5 swatch cards, each carrying a chapter of the teardown
+  const cardData = [
+    { code:'11-4001 TC', name:'Bright White',  hex:0xFAFAF8, desc:'The universal language — one standard color space adopted across 100+ industries.' },
+    { code:'17-1500 TC', name:'Steel Gray',    hex:0xC7C6C1, desc:'The target customer: designers, brands, printers and manufacturers who must match color exactly.' },
+    { code:'16-3801 TC', name:'Ash',           hex:0x9C9B96, desc:'The product strategy: licensed standards, physical products and digital integrations.' },
+    { code:'18-0201 TC', name:'Charcoal Gray', hex:0x767570, desc:'The pricing model: licensing, subscriptions and per-standard sales.' },
+    { code:'19-4005 TC', name:'Black Beauty',  hex:0x4B4A47, desc:'The growth engine: the Color of the Year — free PR that money can\u2019t buy.' }
+  ];
 
   function initHero(){
     renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
@@ -810,32 +837,68 @@
     group = new THREE.Group();
     scene.add(group);
 
-    const greys = [0xFAFAF8,0xE6E5E1,0xC7C6C1,0x9C9B96,0x767570,0x4B4A47,0x2B2B2A];
-    const count = 14;
-    for(let i=0;i<count;i++){
-      const w = 1.4, h = 1.9;
-      const geo = new THREE.BoxGeometry(w,h,0.04);
-      const mat = new THREE.MeshStandardMaterial({
-        color: greys[i%greys.length],
-        roughness:0.85, metalness:0.05
-      });
-      const mesh = new THREE.Mesh(geo, mat);
-      const angle = (i/count)*Math.PI*2;
-      const radius = 4.4;
-      mesh.position.set(Math.cos(angle)*radius*0.5, Math.sin(angle*0.6)*1.6, -i*0.35);
-      mesh.rotation.z = (Math.random()-0.5)*0.5;
-      mesh.rotation.y = (Math.random()-0.5)*0.3;
-      mesh.userData.baseX = mesh.position.x;
-      mesh.userData.baseY = mesh.position.y;
-      mesh.userData.speed = 0.3 + Math.random()*0.4;
-      mesh.userData.offset = Math.random()*Math.PI*2;
+    raycaster = new THREE.Raycaster();
+    pointer = new THREE.Vector2(-2,-2);
+
+    const w = 1.4, h = 1.9;
+    const geo = new THREE.BoxGeometry(w,h,0.04);
+    const edges = new THREE.EdgesGeometry(geo);
+
+    // draw a real Pantone swatch card face: color chip on top, white strip with
+    // the PANTONE wordmark and code at the bottom
+    function swatchTexture(d){
+      const W = 512, H = Math.round(512*(h/w));       // match card aspect
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const ctx = c.getContext('2d');
+      const hexStr = '#' + d.hex.toString(16).padStart(6,'0');
+      const stripH = Math.round(H*0.24);
+      ctx.fillStyle = hexStr;
+      ctx.fillRect(0,0,W,H-stripH);
+      ctx.fillStyle = '#FCFCFA';
+      ctx.fillRect(0,H-stripH,W,stripH);
+      ctx.fillStyle = '#1A1A19';
+      ctx.font = '600 ' + Math.round(W*0.11) + 'px Space Grotesk, Inter, sans-serif';
+      ctx.fillText('PANTONE', W*0.07, H - stripH*0.42);
+      ctx.font = '500 ' + Math.round(W*0.085) + 'px JetBrains Mono, monospace';
+      ctx.fillStyle = '#8A8985';
+      ctx.fillText(d.code.replace(' TC',' TCX'), W*0.07, H - stripH*0.14);
+      const tex = new THREE.CanvasTexture(c);
+      tex.anisotropy = 4;
+      return tex;
+    }
+
+    // hand-placed, non-overlapping layout on the right side of the slide
+    const layout = [
+      { x: 3.1, y:  1.7, rz: -0.10, ry:  0.28 },
+      { x: 4.9, y:  0.4, rz:  0.08, ry: -0.22 },
+      { x: 3.4, y: -0.9, rz: -0.06, ry:  0.18 },
+      { x: 5.3, y: -2.0, rz:  0.12, ry: -0.30 },
+      { x: 6.0, y:  1.8, rz: -0.14, ry:  0.35 }
+    ];
+
+    cardData.forEach((d,i)=>{
+      const face = new THREE.MeshStandardMaterial({ map:swatchTexture(d), roughness:0.85, metalness:0.05 });
+      const side = new THREE.MeshStandardMaterial({ color:0xEFEFEA, roughness:0.85, metalness:0.05 });
+      // box face order: +x, -x, +y, -y, front(z+), back(z-)
+      const mesh = new THREE.Mesh(geo, [side, side, side, side, face, side]);
+      const L = layout[i];
+      mesh.position.set(L.x, L.y, -i*0.3);
+      mesh.rotation.set(0, L.ry, L.rz);
+      mesh.userData = {
+        baseX:L.x, baseY:L.y, baseZ:mesh.position.z,
+        baseRz:L.rz, baseRy:L.ry,
+        speed: 0.45 + i*0.06,          // slow, near-uniform drift
+        offset: i*1.25,
+        lift: 0,                        // eased hover lift 0→1
+        data: d
+      };
       group.add(mesh);
 
       // thin white edge for a "swatch card" look
-      const edges = new THREE.EdgesGeometry(geo);
       const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({color:0xffffff, transparent:true, opacity:0.25}));
       mesh.add(line);
-    }
+    });
 
     const light1 = new THREE.DirectionalLight(0xffffff, 1.0);
     light1.position.set(4,6,8);
@@ -846,6 +909,9 @@
     window.addEventListener('mousemove', (e)=>{
       mouseX = (e.clientX/window.innerWidth - 0.5);
       mouseY = (e.clientY/window.innerHeight - 0.5);
+      mousePx.x = e.clientX; mousePx.y = e.clientY;
+      pointer.x = (e.clientX/window.innerWidth)*2 - 1;
+      pointer.y = -(e.clientY/window.innerHeight)*2 + 1;
     });
 
     window.addEventListener('resize', onResize);
@@ -858,6 +924,16 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
+    // keep the card cluster clear of the PANTONE heading on narrow screens
+    const halfW = Math.tan(THREE.MathUtils.degToRad(camera.fov/2)) * camera.position.z * camera.aspect;
+    if(camera.aspect < 1.1){
+      group.visible = false;            // too narrow — don't clutter mobile
+    }else{
+      group.visible = true;
+      const maxX = Math.max(3.2, halfW - 2.2);
+      group.scale.setScalar(Math.min(1, maxX/6.6));
+      group.position.x = Math.min(1.6, Math.max(0, (halfW - 6.6) * 0.5));
+    }
   }
 
   let heroActive = true;
@@ -866,12 +942,48 @@
     raf = requestAnimationFrame(animateHero);
     if(!heroActive) return;
     const t = clock.getElapsedTime();
-    group.rotation.y = mouseX*0.4;
-    group.rotation.x = mouseY*0.2;
+
+    // hover detection
+    if(raycaster){
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObjects(group.children, false)[0];
+      const mesh = hit ? hit.object : null;
+      if(mesh !== hovered){
+        hovered = mesh;
+        if(hovered){
+          tipCode.textContent = hovered.userData.data.code;
+          tipName.textContent = hovered.userData.data.name;
+          tipDesc.textContent = hovered.userData.data.desc;
+        }
+      }
+      if(hovered){
+        tip.style.opacity = '1';
+        tip.style.transform = 'translateY(0)';
+        const tx = Math.min(mousePx.x + 18, window.innerWidth - 230);
+        const ty = Math.max(12, mousePx.y - 20);
+        tip.style.left = tx + 'px';
+        tip.style.top = ty + 'px';
+        document.body.style.cursor = 'pointer';
+      }else{
+        tip.style.opacity = '0';
+        tip.style.transform = 'translateY(6px)';
+        document.body.style.cursor = '';
+      }
+    }
+
+    // slow parallax tilt, heavily damped for a smooth feel
+    group.rotation.y += (mouseX*0.25 - group.rotation.y)*0.04;
+    group.rotation.x += (mouseY*0.12 - group.rotation.x)*0.04;
+
     group.children.forEach((m)=>{
-      if(m.userData.speed){
-        m.position.y = m.userData.baseY + Math.sin(t*m.userData.speed + m.userData.offset)*0.25;
-        m.rotation.z += 0.0006;
+      const u = m.userData;
+      if(u.speed){
+        // eased hover lift (0 → 1)
+        u.lift += ((m === hovered ? 1 : 0) - u.lift) * 0.1;
+        m.position.y = u.baseY + Math.sin(t*u.speed + u.offset)*0.18 + u.lift*0.25;
+        m.position.z = u.baseZ + u.lift*0.9;              // card comes toward you
+        m.rotation.z = u.baseRz + Math.sin(t*u.speed*0.7 + u.offset)*0.02; // gentle sway, no spin drift
+        m.rotation.y += (u.baseRy*(1-u.lift) - m.rotation.y) * 0.08;      // straightens slightly on hover
       }
     });
     renderer.render(scene, camera);
