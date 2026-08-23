@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PANTONE — Go-To-Market Teardown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+<div class="halftone"></div>
+<div class="grain-vignette"></div>
+<div id="progress-bar"></div>
+
+<div id="deck-wrap">
+  <div id="track">
+
+    <!-- SLIDE 0 : TITLE -->
+    <section class="slide dark" data-code="11-4001 TC" data-name="Bright White" aria-label="Title slide">
+      <canvas id="hero-canvas"></canvas>
+      <div class="slide-inner title-copy">
+        <div class="chrome">
+          <div class="idx"><b>00</b>/14</div>
+          <div>GTM Strategy Teardown</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+          <div class="eyebrow reveal">In-class assignment · Entrepreneurship</div>
+          <div class="brand reveal">PANTONE</div>
+          <p class="title-sub reveal">Reverse-engineering the go-to-market strategy of the company that turned color into a licensed, universal language — and a business.</p>
+          <div class="title-meta reveal">
+            <div>Team<b>Biswajeet (Lead)</b></div>
+            <div>&nbsp;<b>Kanishk Singh</b></div>
+            <div>&nbsp;<b>Ganesh Padhi</b></div>
+            <div>&nbsp;<b>Om Maurya</b></div>
+            <div>&nbsp;<b>Sneha Chaturvedi</b></div>
+          </div>
+        </div>
+        <div class="begin-hint"><span class="arrow">→</span> Press arrow keys, scroll, or click to begin</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1: COMPANY SNAPSHOT -->
+    <section class="slide" data-code="14-4102 TC" data-name="Pavement" aria-label="Company snapshot">
+      <div class="chrome">
+        <div class="idx"><b>01</b>/14</div>
+        <div>The Company</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">01 — Company Snapshot</div>
+        <h1 class="headline reveal">A biochemical company that sells consistency.</h1>
+        <div class="grid-2">
+          <ul class="blist reveal">
+            <li>Standardizes and licenses a universal color-matching language used across design, print and manufacturing.</li>
+            <li>Sells physical guides, digital libraries, licensing and consulting — not paint, not ink, not pigment.</li>
+            <li>Serves print, fashion, textiles, plastics, packaging and product design worldwide.</li>
+          </ul>
+          <div class="reveal">
+            <div class="stat-block">
+              <div class="stat-num">~60%</div>
+              <div class="stat-label">Of revenue from printed color guides alone</div>
+            </div>
+            <div class="rule"></div>
+            <div class="stat-label">Major competitors</div>
+            <div class="tag-row">
+              <span class="tag">Coloro</span><span class="tag">RAL</span><span class="tag">Trumatch</span><span class="tag">Generic RGB/CMYK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><span>Pantone LLC · X-Rite / Danaher</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 2: TARGET CUSTOMER -->
+    <section class="slide alt" data-code="17-1500 TC" data-name="Steel Gray" aria-label="Target customer">
+      <div class="chrome">
+        <div class="idx"><b>02</b>/14</div>
+        <div>Target Customer</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">02 — Who Buys Color</div>
+        <h1 class="headline reveal">The professional who cannot afford to guess.</h1>
+        <div class="grid-2">
+          <div class="reveal">
+            <div class="stat-label">Primary</div>
+            <p class="lead">Graphic designers, print production managers, textile &amp; fashion designers and packaging teams, aged roughly 25–55 — people who reference a color code daily in briefs, approvals and purchase orders.</p>
+          </div>
+          <div class="reveal">
+            <div class="stat-label">Secondary</div>
+            <p class="lead">Lifestyle merchandise buyers, and brand marketers licensing an exclusive shade of their own — a Tiffany Blue, a UPS Brown.</p>
+          </div>
+        </div>
+        <div class="rule"></div>
+        <p class="quote reveal">They don't buy color. <span>They buy certainty.</span></p>
+      </div>
+      <div class="foot"><span>Segment: professional creatives</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 3: CUSTOMER PROBLEM -->
+    <section class="slide" data-code="19-0303 TC" data-name="Castlerock" aria-label="Customer problem">
+      <div class="chrome">
+        <div class="idx"><b>03</b>/14</div>
+        <div>Customer Problem</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">03 — The Problem</div>
+        <h1 class="headline reveal">The same red isn't the same red.</h1>
+        <div class="grid-2">
+          <div class="reveal">
+            <div class="stat-label">Before Pantone (1958)</div>
+            <p class="lead">Designers and printers relied on vague verbal descriptions, or ad-hoc, in-house matching by individual print shops — inconsistent from vendor to vendor.</p>
+          </div>
+          <div class="reveal">
+            <div class="stat-label">The failure mode</div>
+            <p class="lead">One color, rendered across a billboard, a package and a garment, can drift just enough to confuse customers and quietly damage a brand. Ask Kodak about its yellow.</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><span>Root cause: no shared reference standard</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 4: VALUE PROPOSITION -->
+    <section class="slide dark" data-code="12-0000 TC" data-name="Blanc de Blanc" aria-label="Value proposition">
+      <div class="chrome">
+        <div class="idx"><b>04</b>/14</div>
+        <div>Value Proposition</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">04 — Value Proposition</div>
+        <p class="quote reveal" style="max-width:34ch; font-size:clamp(24px,4vw,52px);">"For designers &amp; manufacturers who need color to look identical everywhere it's produced — <span>Pantone provides one matching language, unlike screen-based RGB/CMYK.</span>"</p>
+        <div class="tag-row reveal" style="margin-top:32px;">
+          <span class="tag">Brand</span><span class="tag">Technology</span><span class="tag">Network Effect</span>
+        </div>
+      </div>
+      <div class="foot"><span>What makes it different</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 5: PRODUCT STRATEGY -->
+    <section class="slide" data-code="16-3801 TC" data-name="Ash" aria-label="Product strategy">
+      <div class="chrome">
+        <div class="idx"><b>05</b>/14</div>
+        <div>Product Strategy</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">05 — Product Strategy</div>
+        <h1 class="headline reveal">One system, three formats.</h1>
+        <ol class="num-list reveal">
+          <li>Universally recognized numbered codes — a shared vocabulary for color, understood the same way in Mumbai or Milan.</li>
+          <li>Physical fan decks &amp; guides — true, side-by-side matching across print and fabric mediums.</li>
+          <li>Digital plugins &amp; APIs — embedded directly inside the tools designers already open every day.</li>
+        </ol>
+      </div>
+      <div class="foot"><span>Core insight: the code is the product</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 6: PRICING STRATEGY -->
+    <section class="slide alt" data-code="18-0201 TC" data-name="Charcoal Gray" aria-label="Pricing strategy">
+      <div class="chrome">
+        <div class="idx"><b>06</b>/14</div>
+        <div>Pricing Strategy</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">06 — Pricing Strategy</div>
+        <h1 class="headline reveal">Priced like a standard, not a swatch.</h1>
+        <div class="grid-2">
+          <div class="reveal">
+            <div class="stat-num">$200–9K</div>
+            <div class="stat-label">Basic guide to professional set</div>
+          </div>
+          <div class="reveal">
+            <div class="stat-label">Model</div>
+            <p class="lead">One-time guide purchases + B2B licensing contracts, plus a growing layer of digital subscriptions.</p>
+          </div>
+        </div>
+        <div class="rule"></div>
+        <p class="quote reveal" style="font-size:clamp(18px,2.4vw,28px);">Built-in obsolescence: chips fade, so professionals repurchase — <span>almost every year.</span></p>
+      </div>
+      <div class="foot"><span>Near-monopoly on the standard = pricing power</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 7: DISTRIBUTION -->
+    <section class="slide" data-code="15-4101 TC" data-name="High-Rise" aria-label="Distribution strategy">
+      <div class="chrome">
+        <div class="idx"><b>07</b>/14</div>
+        <div>Distribution</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">07 — Distribution Strategy</div>
+        <h1 class="headline reveal">Sold where design already happens.</h1>
+        <div class="tag-row reveal">
+          <span class="tag">Direct e-commerce</span><span class="tag">Distributors</span><span class="tag">Software partnerships</span><span class="tag">App / plugin stores</span>
+        </div>
+        <div class="rule"></div>
+        <p class="quote reveal" style="font-size:clamp(18px,2.6vw,30px);">Primary channel: embedded inside Adobe &amp; design tools — <span>not a separate purchase decision.</span></p>
+      </div>
+      <div class="foot"><span>Distribution = habit, not a store visit</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 8: ACQUISITION & PROMOTION -->
+    <section class="slide alt" data-code="19-4008 TC" data-name="Jet Black" aria-label="Customer acquisition and promotion">
+      <div class="chrome">
+        <div class="idx"><b>08</b>/14</div>
+        <div>Acquisition &amp; Promotion</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">08 — Customer Acquisition &amp; Promotion</div>
+        <h1 class="headline reveal" style="font-size:clamp(28px,4.6vw,58px);">One color a year buys a decade of headlines.</h1>
+        <table class="mtable reveal">
+          <thead><tr><th>Channel</th><th>Evidence</th><th>Importance</th></tr></thead>
+          <tbody>
+            <tr><td>Color of the Year</td><td>Global press every year — Peach Fuzz, Mocha Mousse</td><td><span class="imp">High</span></td></tr>
+            <tr><td>Software partnerships</td><td>Bundled &amp; certified inside Adobe and printers</td><td><span class="imp">High</span></td></tr>
+            <tr><td>Trade shows &amp; education</td><td>Design schools teach the standard from day one</td><td><span class="imp">Medium</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="foot"><span>Free global PR for a B2B licensing business</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 9: CUSTOMER JOURNEY -->
+    <section class="slide" data-code="13-4103 TC" data-name="Glacier Gray" aria-label="Customer journey">
+      <div class="chrome">
+        <div class="idx"><b>09</b>/14</div>
+        <div>Customer Journey</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">09 — Customer Journey</div>
+        <h1 class="headline reveal" style="font-size:clamp(28px,4.6vw,56px);">From headline to habit.</h1>
+        <div class="journey reveal">
+          <div class="jstep"><div class="jn">01</div><h4>Awareness</h4><p>Global press covers the Color of the Year.</p></div>
+          <div class="jstep"><div class="jn">02</div><h4>Interest</h4><p>Designers explore the shade in guides &amp; libraries.</p></div>
+          <div class="jstep"><div class="jn">03</div><h4>Consideration</h4><p>Weighed against Coloro or generic codes.</p></div>
+          <div class="jstep"><div class="jn">04</div><h4>Purchase</h4><p>Buys a guide, subscribes, or licenses a shade.</p></div>
+          <div class="jstep"><div class="jn">05</div><h4>Usage</h4><p>Codes used daily in briefs &amp; production specs.</p></div>
+          <div class="jstep"><div class="jn">06</div><h4>Retention</h4><p>Annual repurchase as chips fade or update.</p></div>
+          <div class="jstep"><div class="jn">07</div><h4>Advocacy</h4><p>Codes referenced in pitches — reinforcing the standard.</p></div>
+        </div>
+      </div>
+      <div class="foot"><span>Seven stages, one reinforcing loop</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 10: GROWTH ENGINE -->
+    <section class="slide dark" data-code="17-1502 TC" data-name="Gargoyle" aria-label="Growth engine">
+      <div class="chrome">
+        <div class="idx"><b>10</b>/14</div>
+        <div>Growth Engine</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">10 — Growth Engine</div>
+        <h1 class="headline reveal">The standard gets stronger the more it's used.</h1>
+        <div class="tag-row reveal">
+          <span class="tag">Network Effects</span><span class="tag">Content</span><span class="tag">Partnerships</span><span class="tag">Product-led</span>
+        </div>
+        <div class="rule"></div>
+        <p class="quote reveal" style="font-size:clamp(18px,2.6vw,30px);">Strongest engine: <span>network effects.</span> Every new adopter makes the standard more necessary for the next one.</p>
+      </div>
+      <div class="foot"><span>Value compounds with every adopter</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 11: ONE-PAGE GTM MAP -->
+    <section class="slide" data-code="14-0000 TC" data-name="Silver Lining" aria-label="One page GTM strategy map">
+      <div class="chrome">
+        <div class="idx"><b>11</b>/14</div>
+        <div>The Full Map</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">11 — One-Page GTM Strategy Map</div>
+        <div class="map-grid reveal">
+          <div class="map-card"><div class="mk">Target Customer</div><div class="mv">Professional designers &amp; manufacturers</div></div>
+          <div class="map-card"><div class="mk">Problem</div><div class="mv">Inconsistent color across mediums</div></div>
+          <div class="map-card"><div class="mk">Value Prop</div><div class="mv">One trusted matching language</div></div>
+          <div class="map-card"><div class="mk">Product</div><div class="mv">Guides + digital libraries + consulting</div></div>
+          <div class="map-card"><div class="mk">Pricing</div><div class="mv">One-time + licensing + subscription</div></div>
+          <div class="map-card"><div class="mk">Distribution</div><div class="mv">E-commerce + software partnerships</div></div>
+          <div class="map-card"><div class="mk">Promotion</div><div class="mv">Color of the Year global PR</div></div>
+          <div class="map-card"><div class="mk">Acquisition</div><div class="mv">Bundling, trade shows, education</div></div>
+          <div class="map-card"><div class="mk">Retention</div><div class="mv">Fading guides drive repurchase</div></div>
+          <div class="map-card"><div class="mk">Growth Engine</div><div class="mv">Network effects</div></div>
+          <div class="map-card"><div class="mk">Competitive Edge</div><div class="mv">Near-monopoly on the standard</div></div>
+        </div>
+      </div>
+      <div class="foot"><span>11 components, one system</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 12: CMO CHALLENGE -->
+    <section class="slide alt" data-code="19-0000 TC" data-name="Anthracite" aria-label="CMO challenge grow 10x">
+      <div class="chrome">
+        <div class="idx"><b>12</b>/14</div>
+        <div>CMO Challenge</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">12 — CMO Challenge: Grow 10X in 12 Months</div>
+        <div class="grid-2">
+          <ol class="num-list reveal">
+            <li><b>Target:</b> Expand to the creator economy &amp; emerging markets like India and SE Asia.</li>
+            <li><b>Product:</b> Launch a freemium, digital-first color app.</li>
+            <li><b>Pricing:</b> Individual subscription tier alongside enterprise licensing.</li>
+          </ol>
+          <ol class="num-list reveal" style="counter-reset:n 3;">
+            <li><b>Channel:</b> API partnerships — Canva, Figma, Shopify.</li>
+            <li><b>Campaign:</b> Localized, user-generated Color of the Year challenges.</li>
+            <li><b>Retention:</b> Referral loyalty + gamified color challenges.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="foot"><span>Six moves, one growth thesis</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 13: FINAL REFLECTION -->
+    <section class="slide" data-code="11-0602 TC" data-name="Bone White" aria-label="Final reflection">
+      <div class="chrome">
+        <div class="idx"><b>13</b>/14</div>
+        <div>Final Reflection</div>
+      </div>
+      <div class="slide-inner">
+        <div class="eyebrow reveal">13 — Final Reflection</div>
+        <div class="grid-2">
+          <div class="reveal">
+            <div class="stat-label">Doing exceptionally well</div>
+            <p class="lead">"Color of the Year" — a content strategy with no real peer: one low-cost announcement, worldwide free press, every year.</p>
+          </div>
+          <div class="reveal">
+            <div class="stat-label">What we'd change</div>
+            <p class="lead">Pricing accessibility — the cost of official guides and licensing shuts out freelancers, students and smaller businesses in emerging markets.</p>
+          </div>
+        </div>
+        <div class="rule"></div>
+        <p class="quote reveal">Pantone's GTM strategy, in one line: <span>make the standard indispensable, then charge for access to it.</span></p>
+      </div>
+      <div class="foot"><span>Summary complete</span><span>Scroll or → to continue</span></div>
+    </section>
+
+    <!-- SLIDE 14: THANK YOU -->
+    <section class="slide dark" data-code="19-4005 TC" data-name="Black Beauty" aria-label="Thank you and questions">
+      <div class="chrome">
+        <div class="idx"><b>14</b>/14</div>
+        <div>Thank You</div>
+      </div>
+      <div class="slide-inner" style="justify-content:center; align-items:flex-start;">
+        <div class="eyebrow reveal">Thank you</div>
+        <div class="thanks-mark reveal">Questions?</div>
+        <p class="title-sub reveal" style="margin-top:22px;">Pantone — the color of profit.</p>
+        <div class="title-meta reveal" style="margin-top:40px;">
+          <div>Team<b>Biswajeet (Lead)</b></div>
+          <div>&nbsp;<b>Kanishk Singh</b></div>
+          <div>&nbsp;<b>Ganesh Padhi</b></div>
+          <div>&nbsp;<b>Om Maurya</b></div>
+          <div>&nbsp;<b>Sneha Chaturvedi</b></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div id="rail" aria-hidden="true"></div>
+<div class="nav-btn" id="prev-btn" aria-label="Previous slide">↑</div>
+<div class="nav-btn" id="next-btn" aria-label="Next slide">↓</div>
+<script type="module" src="/scripts/main.js"></script>
+</body>
+</html>
