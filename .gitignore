@@ -1,3 +1,12 @@
-/test.html
+node_modules/
+dist/
 .vercel
+.playwright-mcp/
 .worktrees/
+test.html
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.env.*
+!.env.example

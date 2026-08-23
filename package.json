@@ -1,0 +1,21 @@
+{
+  "name": "pantone-gtm-teardown",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PANTONE — Go-To-Market Teardown, an interactive single-file presentation.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "smoke": "node tools/smoke.mjs"
+  },
+  "dependencies": {
+    "animejs": "3.2.1",
+    "three": "0.128.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vite-plugin-singlefile": "^2.0.0"
+  }
+}
