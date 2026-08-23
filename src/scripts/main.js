@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import anime from 'animejs';
 import { injectSwatches } from './swatches.js';
+import { revealSlide } from './reveal.js';
 
 (function(){
   "use strict";
@@ -35,24 +36,6 @@ import { injectSwatches } from './swatches.js';
     dots.forEach((d,i)=> d.classList.toggle('active', i===current));
   }
 
-  function revealSlide(idx){
-    const s = slides[idx];
-    const items = s.querySelectorAll('.reveal');
-    if(reduceMotion){
-      items.forEach(el=> el.style.opacity=1);
-      return;
-    }
-    anime.set(items, {opacity:0, translateY:18});
-    anime({
-      targets: items,
-      opacity:[0,1],
-      translateY:[18,0],
-      easing:'easeOutCubic',
-      duration:700,
-      delay: anime.stagger(80, {start:120})
-    });
-  }
-
   function goTo(idx){
     if(animating || idx===current || idx<0 || idx>=total) return;
     animating = true;
@@ -60,7 +43,7 @@ import { injectSwatches } from './swatches.js';
     const y = -(current*100);
     if(reduceMotion){
       track.style.transform = 'translateY('+y+'vh)';
-      revealSlide(current);
+      revealSlide(slides[current], reduceMotion);
       updateChrome();
       animating=false;
       return;
@@ -73,7 +56,7 @@ import { injectSwatches } from './swatches.js';
       complete: ()=>{ animating=false; }
     });
     updateChrome();
-    setTimeout(()=> revealSlide(current), 260);
+    setTimeout(() => revealSlide(slides[current], reduceMotion), 260);
   }
 
   function next(){ if(current<total-1) goTo(current+1); }
@@ -117,7 +100,7 @@ import { injectSwatches } from './swatches.js';
   });
 
   updateChrome();
-  revealSlide(0);
+  revealSlide(slides[0], reduceMotion);
 
   /* ================= THREE.JS HERO (title slide) ================= */
   const canvas = document.getElementById('hero-canvas');
