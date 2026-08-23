@@ -171,6 +171,7 @@ node_modules/
 dist/
 .vercel
 .playwright-mcp/
+.worktrees/
 test.html
 .DS_Store
 *.log
