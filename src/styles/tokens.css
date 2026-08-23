@@ -1,0 +1,11 @@
+  :root{
+    --white:#FAFAF8;
+    --fog:#E6E5E1;
+    --grey:#9C9B96;
+    --iron:#4B4A47;
+    --ink:#121212;
+    --display:'Space Grotesk', sans-serif;
+    --body-f:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+    --gap: clamp(20px, 4vw, 64px);
+  }

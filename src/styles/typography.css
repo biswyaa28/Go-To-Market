@@ -1,0 +1,27 @@
+  /* ---------- typography ---------- */
+  .eyebrow{
+    font-family:var(--mono); font-size:clamp(11px,1.1vw,13px);
+    letter-spacing:.16em; text-transform:uppercase; color:var(--iron);
+    margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .slide.dark .eyebrow{ color:var(--grey); }
+  .eyebrow::before{ content:''; width:24px; height:1px; background:currentColor; display:inline-block; }
+
+  h1.headline{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(34px, 6vw, 84px);
+    line-height:1.02; letter-spacing:-.02em; margin:0 0 22px;
+    max-width: 20ch;
+  }
+  h2.subhead{
+    font-family:var(--display); font-weight:600;
+    font-size:clamp(22px,2.8vw,36px);
+    line-height:1.15; margin:0 0 18px; max-width:22ch;
+  }
+  p.lead{
+    font-size:clamp(15px,1.4vw,19px); line-height:1.55; color:var(--iron);
+    max-width:62ch; margin:0 0 14px;
+  }
+  .slide.dark p.lead{ color:#C9C8C3; }
+
+  .rule{ height:1px; background:var(--iron); opacity:.25; margin:22px 0; width:100%; }

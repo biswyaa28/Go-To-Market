@@ -1,0 +1,82 @@
+  /* ---------- content blocks ---------- */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,48px); align-items:start; }
+  .stat-block{ }
+  .stat-num{ font-family:var(--display); font-weight:700; font-size:clamp(40px,6vw,72px); line-height:1; }
+  .stat-label{ font-family:var(--mono); font-size:12px; color:var(--iron); letter-spacing:.06em; text-transform:uppercase; margin-top:6px; }
+
+  ul.blist{ list-style:none; margin:0; padding:0; }
+  ul.blist li{
+    position:relative; padding-left:28px; margin-bottom:14px;
+    font-size:clamp(14px,1.3vw,17px); line-height:1.5;
+  }
+  ul.blist li::before{
+    content:''; position:absolute; left:0; top:8px; width:14px; height:1px; background:var(--ink);
+  }
+  .slide.dark ul.blist li::before{ background:var(--white); }
+
+  .num-list{ list-style:none; margin:0; padding:0; counter-reset:n; }
+  .num-list li{
+    counter-increment:n; position:relative; padding-left:52px; margin-bottom:20px;
+    font-size:clamp(14px,1.3vw,18px); line-height:1.5;
+  }
+  .num-list li::before{
+    content: counter(n,decimal-leading-zero);
+    position:absolute; left:0; top:-2px;
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    color:var(--grey); border:1px solid var(--iron); border-radius:50%;
+    width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  }
+  .slide.dark .num-list li::before{ color:var(--ink); background:var(--white); border-color:var(--white); }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+  .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    border:1px solid var(--iron); padding:7px 14px;
+  }
+  .slide.dark .tag{ border-color:var(--grey); color:var(--white); }
+
+  .quote{
+    font-family:var(--display); font-weight:500; font-style:normal;
+    font-size:clamp(22px,3.2vw,42px); line-height:1.25; max-width:26ch;
+  }
+  .quote span{ color:var(--grey); }
+
+  /* mini table */
+  .mtable{ width:100%; border-collapse:collapse; }
+  .mtable th,.mtable td{
+    text-align:left; padding:14px 12px; border-bottom:1px solid rgba(0,0,0,.12);
+    font-size:clamp(13px,1.1vw,15px);
+  }
+  .mtable th{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--iron);
+    border-bottom:1px solid var(--iron);
+  }
+  .imp{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; padding:4px 10px; border:1px solid var(--iron); display:inline-block;}
+
+  /* journey strip */
+  .journey{ display:flex; flex-wrap:wrap; gap:0; margin-top:18px; }
+  .jstep{
+    flex:1; min-width:120px; padding:16px 14px; border-top:2px solid var(--iron);
+    position:relative;
+  }
+  .jstep .jn{ font-family:var(--mono); font-size:11px; color:var(--grey); }
+  .jstep h4{ font-family:var(--display); font-size:16px; margin:6px 0 6px; }
+  .jstep p{ font-size:12.5px; color:var(--iron); line-height:1.4; margin:0; }
+
+  /* map grid (11 cards) */
+  .map-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:12px;
+  }
+  .map-card{
+    border:1px solid var(--iron); padding:14px; min-height:108px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .map-card .mk{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--grey); }
+  .map-card .mv{ font-family:var(--display); font-weight:600; font-size:14.5px; line-height:1.25; margin-top:8px; }
+
+  /* footer nav hints */
+  .foot{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-family:var(--mono); font-size:11px; color:var(--iron); letter-spacing:.06em; text-transform:uppercase;
+  }
+  .slide.dark .foot{ color:var(--grey); }

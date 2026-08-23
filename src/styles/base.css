@@ -1,0 +1,23 @@
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0; height:100%;
+    background:var(--ink);
+    font-family:var(--body-f);
+    color:var(--ink);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--ink); color:var(--white); }
+
+  /* ---------- background halftone texture ---------- */
+  .halftone{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px);
+    background-size: 14px 14px;
+    mix-blend-mode:multiply;
+    opacity:.5;
+  }
+  .grain-vignette{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.18) 100%);
+  }
