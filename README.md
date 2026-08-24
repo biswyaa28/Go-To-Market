@@ -41,7 +41,7 @@ npm run preview    # serve the production build locally
 npm run smoke      # structural parity check on dist/index.html
 ```
 
-### Navigation
+## Navigation
 
 - **Arrow keys** — move between slides
 - **Scroll** — advance through the deck
@@ -58,7 +58,7 @@ npm run smoke      # structural parity check on dist/index.html
 ## Files
 
 - `src/index.html` — HTML shell + all 15 slides
-- `src/styles/` — CSS modules (imported by `styles/index.css`)
+- `src/styles/` — CSS modules (imported by `src/styles/index.css`)
 - `src/scripts/` — `main.js` (entry), `deck.js`, `reveal.js`, `swatches.js`, `hero.js`
 - `dist/index.html` — built single-file output (generated; git-ignored)
 - `tools/smoke.mjs` — structural parity check
