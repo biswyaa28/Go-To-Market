@@ -26,19 +26,19 @@ The deck is a horizontally-scrolling presentation of 15 slides (00–14) that wa
 | 13 | Final Reflection |
 | 14 | Thank You |
 
-## Usage
-
-`main.html` is fully self-contained — open it directly in any modern browser:
+## Develop
 
 ```sh
-open main.html
+npm install
+npm run dev        # Vite dev server with HMR
 ```
 
-Or serve it locally (recommended, avoids any CDN/font caching quirks):
+## Build
 
 ```sh
-python3 -m http.server 8000
-# then visit http://localhost:8000/main.html
+npm run build      # emits a single self-contained dist/index.html
+npm run preview    # serve the production build locally
+npm run smoke      # structural parity check on dist/index.html
 ```
 
 ### Navigation
@@ -49,15 +49,19 @@ python3 -m http.server 8000
 
 ## Tech
 
-- Plain HTML/CSS/JS in a single file (`main.html`) — no build step
-- [Three.js](https://threejs.org/) (inlined) — WebGL hero animation
-- [anime.js](https://animejs.com/) (inlined) — slide reveal animations
-- Google Fonts: Space Grotesk, Inter, JetBrains Mono (requires internet for font loading)
+- **Source** split under `src/`: `index.html` (shell + 15 sectioned slides), CSS modules in `styles/`, ES modules in `scripts/` (`main`, `deck`, `reveal`, `swatches`, `hero`)
+- **Build**: [Vite](https://vitejs.dev/) + [`vite-plugin-singlefile`](https://github.com/richardtallent/vite-plugin-singlefile) bundle and inline everything into one `dist/index.html`
+- [Three.js](https://threejs.org/) (`three@0.128.0`) — WebGL hero animation, a pinned npm dependency
+- [anime.js](https://animejs.com/) (`animejs@3.2.1`) — slide reveal animations, a pinned npm dependency
+- Google Fonts: Space Grotesk, Inter, JetBrains Mono (loaded at runtime; requires internet)
 
 ## Files
 
-- `main.html` — the presentation
-- `test.html` — local scratch file (git-ignored)
+- `src/index.html` — HTML shell + all 15 slides
+- `src/styles/` — CSS modules (imported by `styles/index.css`)
+- `src/scripts/` — `main.js` (entry), `deck.js`, `reveal.js`, `swatches.js`, `hero.js`
+- `dist/index.html` — built single-file output (generated; git-ignored)
+- `tools/smoke.mjs` — structural parity check
 
 ## Team
 
