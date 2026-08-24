@@ -1,12 +1,34 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-.vercel
-.playwright-mcp/
-.worktrees/
-test.html
-.DS_Store
+*.local
+
+# Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
 .env
 .env.*
 !.env.example
+
+# Editor & OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.sw?
+
+# Deploy & tooling
+.vercel
+.playwright-mcp/
+.worktrees/
+
+# Local scratch
+test.html
