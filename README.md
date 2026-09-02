@@ -99,4 +99,3 @@ Configured for [Vercel](https://vercel.com/) via `vercel.json` (`buildCommand: n
 - Kanishk Singh
 - Ganesh Padhi
 - Om Maurya
-- Sneha Chaturvedi
